@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://seerlamahesh.dev/sitemap.xml
