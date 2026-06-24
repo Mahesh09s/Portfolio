@@ -19,6 +19,34 @@ This repository hosts my personal portfolio website, custom-built to showcase my
 
 ---
 
+## 💼 Professional Experience
+
+### Cybersecurity Research Intern
+**REVA University** | *June 2026 – Present*
+* Conducting threat intelligence research, vulnerability assessment & penetration testing (VAPT), literature reviews, and secure network analysis in a collaborative team environment.
+
+### Advanced Cybersecurity Student Intern
+**Supraja Technologies** | *May 2026 – Present* | *Mode: Online*
+* Learning and applying SOC (Security Operations Center) concepts.
+* Performing Web Application Vulnerability Assessment and Penetration Testing (VAPT).
+* Working with Burp Suite, Nmap, Wireshark, Splunk, and Kali Linux.
+* Participating in security assessments, vulnerability analysis, technical documentation, and cybersecurity training.
+* Strengthening knowledge of network security, web security, and secure application development.
+
+### Networking & Security Trainee
+**Cisco Networking Academy** | *Nov 2025 – Jan 2026*
+* Gained competencies in Cisco Packet Tracer, VLAN configurations, access control list (ACL) implementations, secure network design, web filtering, and network infrastructure security.
+
+### Cybersecurity Intern
+**Redynox Cybersecurity** | *May 2025 – July 2025*
+* Worked on security architecture assessment, vulnerability scans, network monitoring, penetration testing modules, and incident response frameworks.
+
+### Software Development Intern
+**Supraja Technologies** | *Jan 2025 – Mar 2025*
+* Developed core backend APIs and modern full-stack web applications, applying secure coding practices to prevent vulnerabilities.
+
+---
+
 ## 🌐 Live Demo
 
 * Portfolio: Coming Soon
