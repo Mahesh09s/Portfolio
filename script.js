@@ -166,34 +166,29 @@ Available commands:
 `,
         experience: () => `
 <span style="color: #00ff9d;">[+] June 2026 – Present:</span> Cybersecurity Research Intern at REVA University
-<span style="color: #00ff9d;">[+] May 2026 – Present:</span> Advanced Cybersecurity Student Intern at Supraja Technologies
+<span style="color: #00ff9d;">[+] May 2026 – Present:</span> Advanced Cybersecurity Student Intern at Supraja Technologies (Online)
 <span style="color: #00ff9d;">[+] Nov 2025 – Jan 2026:</span> Networking & Security Trainee at Cisco Networking Academy
 <span style="color: #00ff9d;">[+] May 2025 – July 2025:</span> Cybersecurity Intern at Redynox Cybersecurity
-<span style="color: #00ff9d;">[+] Jan 2025 – Mar 2025:</span> Software Development Intern at Supraja Technologies
 <span style="color: #00ff9d;">[+] 2023 – 2027:</span> B.Tech in CSE (Cybersecurity) at MITS (CGPA: 8.1/10)
 `,
         internships: () => `
-<span style="color: #ffc66d;">Professional Internships:</span>
+<span style="color: #ffc66d;">Professional Internships & Traineeships:</span>
 
 <span style="color: #00ff9d;">1. Cybersecurity Research Intern</span>
    REVA University | June 2026 – Present
-   Threat intelligence research, vulnerability assessment & penetration testing (VAPT), literature reviews, network security analysis.
+   Threat intelligence research, vulnerability assessment & penetration testing (VAPT), literature reviews, network security analysis in a collaborative team environment.
 
 <span style="color: #00ff9d;">2. Advanced Cybersecurity Student Intern</span>
    Supraja Technologies | May 2026 – Present | Online
-   Learning SOC concepts, performing Web Application VAPT, vulnerability assessments, Splunk, Burp Suite, Wireshark, Nmap, Kali Linux.
+   Undergoing advanced cybersecurity training, learning SOC concepts, performing Web Application VAPT, vulnerability analysis, and technical documentation using Burp Suite, Nmap, Wireshark, Splunk, and Kali Linux.
 
 <span style="color: #00ff9d;">3. Networking & Security Trainee</span>
    Cisco Networking Academy | Nov 2025 – Jan 2026
-   Cisco Packet Tracer, VLAN configs, ACL implementations, network security design.
+   Cisco Packet Tracer, VLAN configs, ACL implementations, network security design, web filtering, and network infrastructure security.
 
 <span style="color: #00ff9d;">4. Cybersecurity Intern</span>
    Redynox Cybersecurity | May 2025 – July 2025
-   Security architecture assessment, vulnerability scans, network monitoring, incident response.
-
-<span style="color: #00ff9d;">5. Software Development Intern</span>
-   Supraja Technologies | Jan 2025 – Mar 2025
-   Backend APIs, secure coding, full-stack web applications.
+   Security architecture assessment, vulnerability scans, network monitoring, penetration testing modules, and incident response frameworks.
 `,
         projects: () => `
 <span class="code-string">1. Prescripto</span>                 - MERN Doctor Booking & Secure Healthcare Portal
