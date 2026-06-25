@@ -54,6 +54,7 @@ This repository hosts my personal portfolio website, custom-built to showcase my
 
 * Responsive Design: Fluid layouts optimized across all desktop and mobile devices.
 * Interactive Cyberpunk UI: High-fidelity, themed aesthetic built to engage users.
+* Interactive Certificate Gallery: Accessible, filterable gallery with instant modal previews and PDF download controls.
 * Terminal Emulator: Functional mock CLI boot loader and interactive workspace query interface.
 * Animated Skill Visualization: D3/SVG skill tree representation displaying technical competencies.
 * Recruiter-Friendly Layout: Structured sections highlighting key credentials and direct downloads.
