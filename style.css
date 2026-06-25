@@ -2807,3 +2807,101 @@ button[type="submit"]:hover {
         gap: 1rem;
     }
 }
+
+/* Gallery Search Bar Styling */
+.gallery-search-bar {
+    position: relative;
+    max-width: 450px;
+    margin: 0 auto 2.5rem auto;
+    z-index: 5;
+}
+
+.gallery-search-bar input {
+    width: 100%;
+    padding: 12px 20px 12px 45px;
+    background: rgba(15, 15, 15, 0.7);
+    border: 1px solid rgba(0, 255, 157, 0.2);
+    border-radius: 4px;
+    color: var(--text-primary);
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.gallery-search-bar input:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 15px var(--accent-glow), inset 0 0 5px rgba(0, 255, 157, 0.1);
+}
+
+.gallery-search-bar .search-icon {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-secondary);
+    transition: color 0.3s ease;
+    font-size: 0.95rem;
+}
+
+.gallery-search-bar input:focus + .search-icon {
+    color: var(--accent-color);
+    text-shadow: 0 0 8px var(--accent-glow);
+}
+
+/* Modal Prev/Next Navigation Controls */
+.modal-nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(10, 10, 10, 0.85);
+    border: 1px solid rgba(0, 255, 157, 0.3);
+    color: var(--accent-color);
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 15;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 0 10px var(--accent-glow);
+}
+
+.modal-nav-btn:hover {
+    background: var(--accent-color);
+    color: #000;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 20px var(--accent-color);
+    transform: translateY(-50%) scale(1.1);
+}
+
+.modal-nav-btn:focus-visible {
+    outline: 2px solid var(--accent-color) !important;
+    outline-offset: 4px !important;
+    box-shadow: 0 0 15px var(--accent-color) !important;
+}
+
+.prev-btn {
+    left: -22px;
+}
+
+.next-btn {
+    right: -22px;
+}
+
+/* Make sure mobile modal navigation positions correctly */
+@media (max-width: 768px) {
+    .modal-nav-btn {
+        width: 38px;
+        height: 38px;
+    }
+    .prev-btn {
+        left: 10px;
+    }
+    .next-btn {
+        right: 10px;
+    }
+}

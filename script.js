@@ -147,11 +147,12 @@ document.addEventListener('DOMContentLoaded', () => {
 Available commands:
   <span class="code-func">help</span>           - Show this help message
   <span class="code-func">whoami</span>         - Display user info
+  <span class="code-func">education</span>      - Display academic background
   <span class="code-func">experience</span>     - Display professional experience timeline
   <span class="code-func">internships</span>    - Display list of internships & traineeships
   <span class="code-func">projects</span>       - List my key projects
   <span class="code-func">skills</span>         - Display all technical skills
-  <span class="code-func">certifications</span> - Display all certifications
+  <span class="code-func">certifications</span> - Display all certifications (including Oracle, Google, NASSCOM)
   <span class="code-func">contact</span>        - Show contact details
   <span class="code-func">resume</span>         - Download resume
   <span class="code-func">clear</span>          - Clear terminal history
@@ -163,6 +164,24 @@ Available commands:
 <span style="color: #00ff9d;">College:</span> MITS
 <span style="color: #00ff9d;">Department:</span> CSE (Cybersecurity)
 <span style="color: #00ff9d;">Current Role:</span> Advanced Cybersecurity Student Intern at Supraja Technologies
+`,
+        education: () => `
+<span style="color: #ffc66d;">Academic History:</span>
+
+<span style="color: #00ff9d;">1. Bachelor of Technology (B.Tech) - CSE (Cybersecurity)</span>
+   Madanapalle Institute of Technology & Science (MITS) | Sep 2023 – Present
+   - Specializing in Cybersecurity, VAPT, Full Stack Development, Cloud & Networking.
+   - Current CGPA: 8.1/10
+
+<span style="color: #00ff9d;">2. Intermediate (MPC)</span>
+   Bheeram Sreedhar Reddy Junior College | Jun 2021 – Jun 2023
+   - Grade: 92%
+   - Stream: Mathematics, Physics, and Chemistry
+
+<span style="color: #00ff9d;">3. High School (CBSE)</span>
+   Bheeram Sreedhar Reddy International School | Mar 2020 – Apr 2021
+   - Grade: 81.2%
+   - Extracurriculars: Handball, Football
 `,
         experience: () => `
 <span style="color: #00ff9d;">[+] June 2026 – Present:</span> Cybersecurity Research Intern at REVA University
@@ -209,14 +228,14 @@ Available commands:
 <span style="color: #00ff9d;">[+] Tools:</span>       Git, GitHub, VS Code, Linux, Cisco Packet Tracer
 `,
         certifications: () => `
-- OCI 2025 Generative AI Professional (Oracle Cloud Infrastructure)
+- Oracle Cloud Infrastructure 2025 Certified Generative AI Professional (Oracle University)
 - Foundations of Cybersecurity (Google / Coursera)
 - Cisco Junior Cybersecurity Analyst (Cisco Networking Academy)
 - Cisco Introduction to Cybersecurity (Cisco Networking Academy)
 - NPTEL Big Data Computing (Elite)
 - NPTEL Programming in Java (Elite)
 - Infosys Springboard Java
-- Digital 101 (NASSCOM FutureSkills Prime)
+- Digital 101 (Gold) (NASSCOM FutureSkills Prime)
 - HackerRank Java, C
 `,
         contact: () => `
@@ -782,18 +801,22 @@ Available commands:
             preview: "assets/certificates/previews/redynox-cybersecurity-internship-certificate.jpg"
         },
         oci: {
-            name: "OCI 2025 Generative AI Professional",
-            issuer: "Oracle Cloud Infrastructure",
-            category: "Cloud / AI",
-            file: "assets/certificates/oci-generative-ai-professional.pdf",
-            preview: "assets/certificates/previews/oci-generative-ai-professional.png"
+            name: "Oracle Cloud Infrastructure 2025 Certified Generative AI Professional",
+            issuer: "Oracle University",
+            category: "Cloud & AI Certification",
+            file: "assets/certificates/oracle-oci-generative-ai-professional.pdf",
+            preview: "assets/certificates/previews/oracle-oci-generative-ai-professional.png",
+            date: "Issued: 26 Oct 2025 | Valid Until: 26 Oct 2027",
+            description: "Earned Oracle's professional certification in Generative AI, demonstrating knowledge of Large Language Models (LLMs), Retrieval-Augmented Generation (RAG), AI services, prompt engineering, and Oracle Cloud Infrastructure AI capabilities."
         },
         google: {
-            name: "Google Foundations of Cybersecurity",
-            issuer: "Google / Coursera",
-            category: "Cybersecurity",
+            name: "Foundations of Cybersecurity",
+            issuer: "Google (Coursera)",
+            category: "Professional Certificate",
             file: "assets/certificates/foundations-of-cybersecurity.pdf",
-            preview: "assets/certificates/previews/foundations-of-cybersecurity.png"
+            preview: "assets/certificates/previews/foundations-of-cybersecurity.png",
+            date: "Issued: 11 June 2026",
+            description: "Successfully completed Google's Foundations of Cybersecurity course, covering cybersecurity principles, security domains, risk management, network security, and security operations."
         },
         "cisco-intro": {
             name: "Cisco Introduction to Cybersecurity",
@@ -831,39 +854,71 @@ Available commands:
             preview: "assets/certificates/previews/infosys-springboard-java.png"
         },
         digital101: {
-            name: "Digital 101",
+            name: "Digital 101 (Gold)",
             issuer: "NASSCOM FutureSkills Prime",
-            category: "Development",
+            category: "Professional Certification",
             file: "assets/certificates/nasscom-digital-101.pdf",
-            preview: "assets/certificates/previews/nasscom-digital-101.png"
+            preview: "assets/certificates/previews/nasscom-digital-101.png",
+            date: "Issued: 1 Jan 2025 | Gold Category (77%)",
+            description: "Successfully completed Digital 101 by NASSCOM FutureSkills Prime with Gold certification, strengthening knowledge of digital technologies and workplace readiness."
         }
     };
 
-    // Gallery Category Filtering Logic
+    // Gallery Category Filtering & Unified Search Logic
     const filterButtons = document.querySelectorAll('.filter-btn');
     const certCards = document.querySelectorAll('.cert-grid .cert-card');
+    const certSearchInput = document.getElementById('cert-search');
+    let activeCategory = 'all';
+    let searchQuery = '';
+
+    function filterCertificates() {
+        certCards.forEach(card => {
+            const cardCategory = card.getAttribute('data-category');
+            
+            const titleElem = card.querySelector('h3');
+            const cardTitle = titleElem ? titleElem.textContent.toLowerCase() : '';
+            
+            const metaElem = card.querySelector('.cert-meta');
+            const cardIssuer = metaElem ? metaElem.textContent.toLowerCase() : '';
+            
+            const badgeElem = card.querySelector('.cert-badge');
+            const cardBadge = badgeElem ? badgeElem.textContent.toLowerCase() : '';
+            
+            const matchesCategory = (activeCategory === 'all' || cardCategory === activeCategory);
+            
+            const searchLower = searchQuery.toLowerCase().trim();
+            const matchesSearch = !searchLower || 
+                cardTitle.includes(searchLower) || 
+                cardIssuer.includes(searchLower) || 
+                cardBadge.includes(searchLower);
+                
+            if (matchesCategory && matchesSearch) {
+                card.style.display = 'flex';
+            } else {
+                card.style.display = 'none';
+            }
+        });
+    }
 
     if (filterButtons.length > 0 && certCards.length > 0) {
         filterButtons.forEach(btn => {
             btn.addEventListener('click', () => {
                 filterButtons.forEach(b => b.classList.remove('active'));
                 btn.classList.add('active');
-
-                const filterValue = btn.getAttribute('data-filter');
-
-                certCards.forEach(card => {
-                    const cardCategory = card.getAttribute('data-category');
-                    if (filterValue === 'all' || cardCategory === filterValue) {
-                        card.style.display = 'flex';
-                    } else {
-                        card.style.display = 'none';
-                    }
-                });
+                activeCategory = btn.getAttribute('data-filter');
+                filterCertificates();
             });
         });
     }
 
-    // Modal Keyboard Focus Trapping & Close Logic
+    if (certSearchInput) {
+        certSearchInput.addEventListener('input', (e) => {
+            searchQuery = e.target.value;
+            filterCertificates();
+        });
+    }
+
+    // Modal Keyboard Focus Trapping, Close & Navigation Logic
     let lastActiveElement = null;
     const modal = document.getElementById('cert-modal');
     const modalCloseBtn = document.getElementById('cert-modal-close');
@@ -872,20 +927,77 @@ Available commands:
     const modalDownload = document.getElementById('cert-modal-download');
     const modalDesc = document.getElementById('cert-modal-desc');
     const modalBackdrop = document.getElementById('cert-modal-backdrop');
+    const prevBtn = document.getElementById('cert-modal-prev');
+    const nextBtn = document.getElementById('cert-modal-next');
 
-    function openCertificateModal(certKey) {
+    let visibleCertKeys = [];
+    let currentCertIndex = -1;
+
+    function updateVisibleCerts() {
+        visibleCertKeys = [];
+        const galleryCards = document.querySelectorAll('.cert-grid .cert-card');
+        galleryCards.forEach(card => {
+            if (card.style.display !== 'none') {
+                const btn = card.querySelector('.cert-btn-view');
+                if (btn && btn.hasAttribute('data-cert')) {
+                    visibleCertKeys.push(btn.getAttribute('data-cert'));
+                }
+            }
+        });
+    }
+
+    function updateNavButtonsVisibility() {
+        if (prevBtn && nextBtn) {
+            if (visibleCertKeys.length <= 1) {
+                prevBtn.style.display = 'none';
+                nextBtn.style.display = 'none';
+            } else {
+                prevBtn.style.display = 'flex';
+                nextBtn.style.display = 'flex';
+            }
+        }
+    }
+
+    function populateModalData(certKey) {
         const cert = certificatesData[certKey];
         if (!cert) return;
 
-        lastActiveElement = document.activeElement;
-
-        // Populate Modal Fields
         modalImg.src = cert.preview;
         modalImg.alt = `Preview of ${cert.name}`;
         modalTitle.textContent = cert.name;
-        modalDesc.textContent = `${cert.issuer} | ${cert.category}`;
+        
+        if (cert.description) {
+            modalDesc.innerHTML = `<strong>${cert.issuer}</strong> | ${cert.category}${cert.date ? ` | ${cert.date}` : ''}<br><span style="display:block; margin-top:8px; font-size:0.85rem; color:var(--text-primary); opacity:0.9; line-height: 1.4;">${cert.description}</span>`;
+        } else {
+            modalDesc.textContent = `${cert.issuer} | ${cert.category}`;
+        }
+        
         modalDownload.href = cert.file;
         modalDownload.setAttribute('aria-label', `Download ${cert.name} file`);
+    }
+
+    function openCertificateModal(certKey) {
+        lastActiveElement = document.activeElement;
+
+        updateVisibleCerts();
+        currentCertIndex = visibleCertKeys.indexOf(certKey);
+
+        // Fallback: if cert opened is currently filtered out, reset filter/search so it shows and navigation works
+        if (currentCertIndex === -1) {
+            activeCategory = 'all';
+            searchQuery = '';
+            if (certSearchInput) certSearchInput.value = '';
+            filterButtons.forEach(b => b.classList.remove('active'));
+            const allBtn = document.querySelector('.filter-btn[data-filter="all"]');
+            if (allBtn) allBtn.classList.add('active');
+            
+            filterCertificates();
+            updateVisibleCerts();
+            currentCertIndex = visibleCertKeys.indexOf(certKey);
+        }
+
+        populateModalData(certKey);
+        updateNavButtonsVisibility();
 
         // Display Modal
         modal.classList.add('active');
@@ -912,10 +1024,24 @@ Available commands:
         }
     }
 
+    function navigateCertificate(direction) {
+        if (visibleCertKeys.length <= 1) return;
+
+        if (direction === 'next') {
+            currentCertIndex = (currentCertIndex + 1) % visibleCertKeys.length;
+        } else if (direction === 'prev') {
+            currentCertIndex = (currentCertIndex - 1 + visibleCertKeys.length) % visibleCertKeys.length;
+        }
+
+        const nextCertKey = visibleCertKeys[currentCertIndex];
+        populateModalData(nextCertKey);
+    }
+
     // Event Delegation for View Buttons
     document.body.addEventListener('click', (e) => {
         const viewBtn = e.target.closest('.cert-btn-view');
         if (viewBtn && viewBtn.hasAttribute('data-cert')) {
+            e.preventDefault();
             const certKey = viewBtn.getAttribute('data-cert');
             openCertificateModal(certKey);
         }
@@ -927,6 +1053,18 @@ Available commands:
     if (modalBackdrop) {
         modalBackdrop.addEventListener('click', closeCertificateModal);
     }
+    if (prevBtn) {
+        prevBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            navigateCertificate('prev');
+        });
+    }
+    if (nextBtn) {
+        nextBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            navigateCertificate('next');
+        });
+    }
 
     // Focus Trapping and Keyboard Accessibility within Modal
     if (modal) {
@@ -936,6 +1074,18 @@ Available commands:
             // Esc to close
             if (e.key === 'Escape') {
                 closeCertificateModal();
+                e.preventDefault();
+                return;
+            }
+
+            // Keyboard navigation (Arrow keys)
+            if (e.key === 'ArrowLeft') {
+                navigateCertificate('prev');
+                e.preventDefault();
+                return;
+            }
+            if (e.key === 'ArrowRight') {
+                navigateCertificate('next');
                 e.preventDefault();
                 return;
             }

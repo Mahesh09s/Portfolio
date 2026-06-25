@@ -44,6 +44,44 @@ This repository hosts my personal portfolio website, custom-built to showcase my
 
 ---
 
+## 🎓 Education
+
+### Bachelor of Technology (B.Tech)
+**Computer Science & Engineering (Cybersecurity)** | **Madanapalle Institute of Technology & Science (MITS)** | *Sep 2023 – Present*
+* Pursuing B.Tech in Computer Science & Engineering with a specialization in Cybersecurity.
+* Building expertise in Cybersecurity, Full Stack Development, Cloud Computing, Networking, Database Management Systems, and Data Structures & Algorithms.
+* Actively participating in internships, technical projects, certifications, hackathons, and cybersecurity labs.
+* **CGPA:** 8.1 / 10
+
+### Intermediate (MPC)
+**Bheeram Sreedhar Reddy Junior College** | *Jun 2021 – Jun 2023*
+* Completed Intermediate education in Mathematics, Physics, and Chemistry (MPC).
+* Developed strong analytical thinking, mathematical reasoning, and problem-solving abilities.
+* **Percentage:** 92%
+
+### High School (CBSE)
+**Bheeram Sreedhar Reddy International School** | *Mar 2020 – Apr 2021*
+* Successfully completed CBSE high school education.
+* Actively participated in Handball and Football, strengthening teamwork, discipline, leadership, and communication skills.
+* **Board:** CBSE
+* **Percentage:** 81.2%
+* **Activities:** Handball, Football
+
+---
+
+## 🏆 Certifications
+
+* **Oracle Cloud Infrastructure 2025 Certified Generative AI Professional** - *Oracle University*
+* **Foundations of Cybersecurity** - *Google (Coursera)*
+* **Cisco Junior Cybersecurity Analyst** - *Cisco Networking Academy*
+* **Cisco Introduction to Cybersecurity** - *Cisco Networking Academy*
+* **NPTEL Big Data Computing (Elite)** - *NPTEL*
+* **NPTEL Programming in Java (Elite)** - *NPTEL*
+* **Infosys Springboard Java** - *Infosys*
+* **Digital 101 (Gold)** - *NASSCOM FutureSkills Prime*
+
+---
+
 ## 🌐 Live Demo
 
 * Portfolio: Coming Soon
