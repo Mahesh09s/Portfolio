@@ -168,7 +168,7 @@ Available commands:
 <span style="color: #00ff9d;">[+] June 2026 – Present:</span> Cybersecurity Research Intern at REVA University
 <span style="color: #00ff9d;">[+] May 2026 – Present:</span> Advanced Cybersecurity Student Intern at Supraja Technologies (Online)
 <span style="color: #00ff9d;">[+] Nov 2025 – Jan 2026:</span> Networking & Security Trainee at Cisco Networking Academy
-<span style="color: #00ff9d;">[+] May 2025 – July 2025:</span> Cybersecurity Intern at Redynox Cybersecurity
+<span style="color: #00ff9d;">[+] July 2025 – August 2025:</span> Cybersecurity Intern at Redynox Cybersecurity
 <span style="color: #00ff9d;">[+] 2023 – 2027:</span> B.Tech in CSE (Cybersecurity) at MITS (CGPA: 8.1/10)
 `,
         internships: () => `
@@ -187,7 +187,7 @@ Available commands:
    Cisco Packet Tracer, VLAN configs, ACL implementations, network security design, web filtering, and network infrastructure security.
 
 <span style="color: #00ff9d;">4. Cybersecurity Intern</span>
-   Redynox Cybersecurity | May 2025 – July 2025
+   Redynox Cybersecurity | July 2025 – August 2025
    Security architecture assessment, vulnerability scans, network monitoring, penetration testing modules, and incident response frameworks.
 `,
         projects: () => `

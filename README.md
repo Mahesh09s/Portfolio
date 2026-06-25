@@ -39,7 +39,7 @@ This repository hosts my personal portfolio website, custom-built to showcase my
 * Gained competencies in Cisco Packet Tracer, VLAN configurations, access control list (ACL) implementations, secure network design, web filtering, and network infrastructure security.
 
 ### Cybersecurity Intern
-**Redynox Cybersecurity** | *May 2025 – July 2025*
+**Redynox Cybersecurity** | *July 2025 – August 2025*
 * Worked on security architecture assessment, vulnerability scans, network monitoring, penetration testing modules, and incident response frameworks.
 
 ---
