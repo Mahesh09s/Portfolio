@@ -233,8 +233,6 @@ Available commands:
 - Cisco Junior Cybersecurity Analyst (Cisco Networking Academy)
 - Cisco Introduction to Cybersecurity (Cisco Networking Academy)
 - NPTEL Big Data Computing (Elite)
-- NPTEL Programming in Java (Elite)
-- Infosys Springboard Java
 - Digital 101 (Gold) (NASSCOM FutureSkills Prime)
 - HackerRank Java, C
 `,
@@ -839,20 +837,7 @@ Available commands:
             file: "assets/certificates/nptel-big-data-computing.pdf",
             preview: "assets/certificates/previews/nptel-big-data-computing.jpg"
         },
-        "nptel-java": {
-            name: "NPTEL Programming in Java (Elite)",
-            issuer: "NPTEL",
-            category: "Development",
-            file: "assets/certificates/nptel-programming-in-java.pdf",
-            preview: "assets/certificates/previews/nptel-programming-in-java.png"
-        },
-        infosys: {
-            name: "Infosys Springboard Java",
-            issuer: "Infosys",
-            category: "Development",
-            file: "assets/certificates/infosys-springboard-java.pdf",
-            preview: "assets/certificates/previews/infosys-springboard-java.png"
-        },
+
         digital101: {
             name: "Digital 101 (Gold)",
             issuer: "NASSCOM FutureSkills Prime",

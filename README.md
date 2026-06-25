@@ -76,8 +76,6 @@ This repository hosts my personal portfolio website, custom-built to showcase my
 * **Cisco Junior Cybersecurity Analyst** - *Cisco Networking Academy*
 * **Cisco Introduction to Cybersecurity** - *Cisco Networking Academy*
 * **NPTEL Big Data Computing (Elite)** - *NPTEL*
-* **NPTEL Programming in Java (Elite)** - *NPTEL*
-* **Infosys Springboard Java** - *Infosys*
 * **Digital 101 (Gold)** - *NASSCOM FutureSkills Prime*
 
 ---
