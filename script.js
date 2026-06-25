@@ -209,13 +209,15 @@ Available commands:
 <span style="color: #00ff9d;">[+] Tools:</span>       Git, GitHub, VS Code, Linux, Cisco Packet Tracer
 `,
         certifications: () => `
-- Oracle Cloud Infrastructure 2025 Generative AI Professional
-- Google Cybersecurity Certificate
-- NPTEL Programming in Java (Elite)
+- OCI 2025 Generative AI Professional (Oracle Cloud Infrastructure)
+- Foundations of Cybersecurity (Google / Coursera)
+- Cisco Junior Cybersecurity Analyst (Cisco Networking Academy)
+- Cisco Introduction to Cybersecurity (Cisco Networking Academy)
 - NPTEL Big Data Computing (Elite)
-- Cisco Cybersecurity
+- NPTEL Programming in Java (Elite)
+- Infosys Springboard Java
+- Digital 101 (NASSCOM FutureSkills Prime)
 - HackerRank Java, C
-- Infosys Springboard
 `,
         contact: () => `
 <span style="color: #00ff9d;">Email:</span>    seerlamahesh17@gmail.com
@@ -756,41 +758,208 @@ Available commands:
         updateTree();
     }
 
-    // --- Certifications Dropdown Keyboard-Accessible Logic ---
-    const googleCertToggle = document.getElementById('google-cert-toggle');
-    const googleCertList = document.getElementById('google-cert-list');
-    const googleCertArrow = document.getElementById('google-cert-arrow');
+    // --- Certifications Gallery Data & Interactive Logic ---
+    const certificatesData = {
+        supraja: {
+            name: "Supraja Technologies Offer Letter",
+            issuer: "Supraja Technologies",
+            category: "Internship",
+            file: "assets/certificates/supraja-technologies-offer-letter.pdf",
+            preview: "assets/certificates/previews/supraja-technologies-offer-letter.png"
+        },
+        "cisco-intern": {
+            name: "Cisco AICTE Virtual Internship Certificate",
+            issuer: "Cisco Networking Academy",
+            category: "Internship",
+            file: "assets/certificates/cisco-aicte-virtual-internship-2025.png",
+            preview: "assets/certificates/cisco-aicte-virtual-internship-2025.png"
+        },
+        redynox: {
+            name: "Redynox Cybersecurity Internship Certificate",
+            issuer: "Redynox Cybersecurity",
+            category: "Internship",
+            file: "assets/certificates/redynox-cybersecurity-internship-certificate.pdf",
+            preview: "assets/certificates/previews/redynox-cybersecurity-internship-certificate.jpg"
+        },
+        oci: {
+            name: "OCI 2025 Generative AI Professional",
+            issuer: "Oracle Cloud Infrastructure",
+            category: "Cloud / AI",
+            file: "assets/certificates/oci-generative-ai-professional.pdf",
+            preview: "assets/certificates/previews/oci-generative-ai-professional.png"
+        },
+        google: {
+            name: "Google Foundations of Cybersecurity",
+            issuer: "Google / Coursera",
+            category: "Cybersecurity",
+            file: "assets/certificates/foundations-of-cybersecurity.pdf",
+            preview: "assets/certificates/previews/foundations-of-cybersecurity.png"
+        },
+        "cisco-intro": {
+            name: "Cisco Introduction to Cybersecurity",
+            issuer: "Cisco Networking Academy",
+            category: "Cybersecurity",
+            file: "assets/certificates/cisco-introduction-to-cybersecurity.pdf",
+            preview: "assets/certificates/previews/cisco-introduction-to-cybersecurity.png"
+        },
+        "cisco-analyst": {
+            name: "Cisco Junior Cybersecurity Analyst",
+            issuer: "Cisco Networking Academy",
+            category: "Cybersecurity",
+            file: "assets/certificates/cisco-junior-cybersecurity-analyst.pdf",
+            preview: "assets/certificates/previews/cisco-junior-cybersecurity-analyst.png"
+        },
+        "nptel-bigdata": {
+            name: "NPTEL Big Data Computing (Elite)",
+            issuer: "NPTEL",
+            category: "Development",
+            file: "assets/certificates/nptel-big-data-computing.pdf",
+            preview: "assets/certificates/previews/nptel-big-data-computing.jpg"
+        },
+        "nptel-java": {
+            name: "NPTEL Programming in Java (Elite)",
+            issuer: "NPTEL",
+            category: "Development",
+            file: "assets/certificates/nptel-programming-in-java.pdf",
+            preview: "assets/certificates/previews/nptel-programming-in-java.png"
+        },
+        infosys: {
+            name: "Infosys Springboard Java",
+            issuer: "Infosys",
+            category: "Development",
+            file: "assets/certificates/infosys-springboard-java.pdf",
+            preview: "assets/certificates/previews/infosys-springboard-java.png"
+        },
+        digital101: {
+            name: "Digital 101",
+            issuer: "NASSCOM FutureSkills Prime",
+            category: "Development",
+            file: "assets/certificates/nasscom-digital-101.pdf",
+            preview: "assets/certificates/previews/nasscom-digital-101.png"
+        }
+    };
 
-    if (googleCertToggle && googleCertList && googleCertArrow) {
-        const toggleGoogleCert = (e) => {
-            if (e.type === 'keydown' && e.key !== 'Enter' && e.key !== ' ') return;
-            if (e.target.tagName === 'A') return;
-            
-            // If space is pressed, prevent default browser scroll behavior
-            if (e.key === ' ') {
+    // Gallery Category Filtering Logic
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const certCards = document.querySelectorAll('.cert-grid .cert-card');
+
+    if (filterButtons.length > 0 && certCards.length > 0) {
+        filterButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterButtons.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                const filterValue = btn.getAttribute('data-filter');
+
+                certCards.forEach(card => {
+                    const cardCategory = card.getAttribute('data-category');
+                    if (filterValue === 'all' || cardCategory === filterValue) {
+                        card.style.display = 'flex';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+    }
+
+    // Modal Keyboard Focus Trapping & Close Logic
+    let lastActiveElement = null;
+    const modal = document.getElementById('cert-modal');
+    const modalCloseBtn = document.getElementById('cert-modal-close');
+    const modalImg = document.getElementById('cert-modal-img');
+    const modalTitle = document.getElementById('cert-modal-title');
+    const modalDownload = document.getElementById('cert-modal-download');
+    const modalDesc = document.getElementById('cert-modal-desc');
+    const modalBackdrop = document.getElementById('cert-modal-backdrop');
+
+    function openCertificateModal(certKey) {
+        const cert = certificatesData[certKey];
+        if (!cert) return;
+
+        lastActiveElement = document.activeElement;
+
+        // Populate Modal Fields
+        modalImg.src = cert.preview;
+        modalImg.alt = `Preview of ${cert.name}`;
+        modalTitle.textContent = cert.name;
+        modalDesc.textContent = `${cert.issuer} | ${cert.category}`;
+        modalDownload.href = cert.file;
+        modalDownload.setAttribute('aria-label', `Download ${cert.name} file`);
+
+        // Display Modal
+        modal.classList.add('active');
+        modal.setAttribute('aria-hidden', 'false');
+
+        // Prevent body scrolling
+        document.body.style.overflow = 'hidden';
+
+        // Focus close button first
+        setTimeout(() => {
+            if (modalCloseBtn) modalCloseBtn.focus();
+        }, 50);
+    }
+
+    function closeCertificateModal() {
+        if (!modal) return;
+        modal.classList.remove('active');
+        modal.setAttribute('aria-hidden', 'true');
+
+        // Restore scroll and focus
+        document.body.style.overflow = '';
+        if (lastActiveElement) {
+            lastActiveElement.focus();
+        }
+    }
+
+    // Event Delegation for View Buttons
+    document.body.addEventListener('click', (e) => {
+        const viewBtn = e.target.closest('.cert-btn-view');
+        if (viewBtn && viewBtn.hasAttribute('data-cert')) {
+            const certKey = viewBtn.getAttribute('data-cert');
+            openCertificateModal(certKey);
+        }
+    });
+
+    if (modalCloseBtn) {
+        modalCloseBtn.addEventListener('click', closeCertificateModal);
+    }
+    if (modalBackdrop) {
+        modalBackdrop.addEventListener('click', closeCertificateModal);
+    }
+
+    // Focus Trapping and Keyboard Accessibility within Modal
+    if (modal) {
+        modal.addEventListener('keydown', (e) => {
+            if (!modal.classList.contains('active')) return;
+
+            // Esc to close
+            if (e.key === 'Escape') {
+                closeCertificateModal();
                 e.preventDefault();
+                return;
             }
 
-            const isExpanded = googleCertList.style.maxHeight !== '0px' && googleCertList.style.maxHeight !== '0' && googleCertList.style.maxHeight !== '';
+            // Tab Trap Focus
+            if (e.key === 'Tab') {
+                const focusableElements = modal.querySelectorAll('button, a, [tabindex="0"]');
+                if (focusableElements.length === 0) return;
+                const firstElement = focusableElements[0];
+                const lastElement = focusableElements[focusableElements.length - 1];
 
-            if (isExpanded) {
-                // Collapse
-                googleCertList.style.maxHeight = '0';
-                googleCertList.style.opacity = '0';
-                googleCertArrow.style.transform = 'rotate(0deg)';
-                googleCertList.style.marginTop = '0';
-                googleCertToggle.setAttribute('aria-expanded', 'false');
-            } else {
-                // Expand
-                googleCertList.style.maxHeight = googleCertList.scrollHeight + 'px';
-                googleCertList.style.opacity = '1';
-                googleCertArrow.style.transform = 'rotate(180deg)';
-                googleCertToggle.setAttribute('aria-expanded', 'true');
+                if (e.shiftKey) { // Shift + Tab
+                    if (document.activeElement === firstElement) {
+                        lastElement.focus();
+                        e.preventDefault();
+                    }
+                } else { // Tab
+                    if (document.activeElement === lastElement) {
+                        firstElement.focus();
+                        e.preventDefault();
+                    }
+                }
             }
-        };
-
-        googleCertToggle.addEventListener('click', toggleGoogleCert);
-        googleCertToggle.addEventListener('keydown', toggleGoogleCert);
+        });
     }
 
     // --- Hero Section Typewriter Animation ---
